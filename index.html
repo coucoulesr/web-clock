@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>A Digital Analog Clock</title>
-    <!--<link rel="stylesheet" href="css/normalize.css" type="text/css" media="all">-->
+    <link rel="stylesheet" href="css/normalize.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
     <script src="js/script.js" defer></script>
 </head>
 
 <body>
+<nav>
+  <a href="#" id="clock-link" class="selected">Clock</a>
+  <a href="#" id="stopwatch-link">Stopwatch</a>
+  <a href="#" id="timer-link">Timer</a>
+</nav>
 <main class="main">
     <div class="clockbox">
         <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
@@ -34,6 +39,12 @@
         </svg>
         <h1 id="digital-clock"></h1>
     </div><!-- .clockbox -->
+
+    <div class="stopwatch">
+    </div>
+
+    <div class="timer">
+    </div>
 </main>
 
 </body>

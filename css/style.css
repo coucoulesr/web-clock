@@ -1,7 +1,43 @@
+/* Colors:
+    #8afcff
+    #4a245d
+    #1b2021
+    #805E73
+    #6c464f
+*/
+
 /* Layout */
+body {
+  background-color: #545b26;
+}
+
+nav {
+	width: 100%;
+	text-align: center;
+	background: #323904;
+	position: fixed;
+  top: 0;
+}
+
+nav a {
+	display: inline-block;
+	padding: 15px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+  font-family: "Helvetica", sans-serif;
+  font-size: 1.125rem;
+  color: #c29800;
+}
+
+.selected{
+  background: #c29800;
+  color: #323904;
+}
+
 .main {
     display: flex;
-    padding: 2em;
+    padding: 3em;
+    margin-top: 2em;
     height: 90vh;
     justify-content: center;
     align-items: middle;
@@ -20,38 +56,38 @@
 /* Clock styles */
 .circle {
     fill: none;
-    stroke: #000;
+    stroke: #e4ba11;
     stroke-width: 9;
     stroke-miterlimit: 10;
 }
 
 .mid-circle {
-    fill: #000;
+    fill: #e4ba11;
 }
 .hour-marks {
     fill: none;
-    stroke: #000;
+    stroke: #e4ba11;
     stroke-width: 9;
     stroke-miterlimit: 10;
 }
 
 .hour-arm {
     fill: none;
-    stroke: #000;
+    stroke: #e4ba11;
     stroke-width: 17;
     stroke-miterlimit: 10;
 }
 
 .minute-arm {
     fill: none;
-    stroke: #000;
+    stroke: #e4ba11;
     stroke-width: 11;
     stroke-miterlimit: 10;
 }
 
 .second-arm {
     fill: none;
-    stroke: #000;
+    stroke: #e4ba11;
     stroke-width: 4;
     stroke-miterlimit: 10;
 }
@@ -68,6 +104,11 @@
 #second {
     transform-origin: 300px 300px;
     transition: transform 0.08s ease-in-out;
+}
+
+h1 {
+  font-family: "Helvetica", sans-serif;
+  color: #e4ba11;
 }
 
 @media (max-width: 800px){
