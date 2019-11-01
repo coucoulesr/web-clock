@@ -5,7 +5,7 @@ The file will have its original line endings in your working directory
 [1m--- a/css/style.css[m
 [1m+++ b/css/style.css[m
 [36m@@ -46,11 +46,7 @@[m [mnav a {[m
- .clockbox,[m
+ .clock-box,[m
  #clock {[m
      width: 100%;[m
 [31m-}[m
@@ -41,7 +41,7 @@ The file will have its original line endings in your working directory
 [1m+++ b/index.html[m
 [36m@@ -40,10 +40,15 @@[m
          <h1 id="digital-clock"></h1>[m
-     </div><!-- .clockbox -->[m
+     </div><!-- .clock-box -->[m
  [m
 [31m-    <div class="stopwatch">[m
 [32m+[m[32m    <div class="stopwatch-box hidden">[m
