@@ -121,7 +121,7 @@ h1 {
   display: none;
 }
 
-.timer-box p {
+.timer-box p, .stopwatch-box h1, .stopwatch-box p {
   font-family: "Helvetica", sans-serif;
   color: #e4ba11;
   font-size: 5rem;
