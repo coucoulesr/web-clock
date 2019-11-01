@@ -121,6 +121,34 @@ h1 {
   display: none;
 }
 
+.timer-box p {
+  font-family: "Helvetica", sans-serif;
+  color: #e4ba11;
+  font-size: 5rem;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 2ch;
+  background: #545b26;
+  border: none;
+  color: #e4ba11;
+  text-align: center;
+  font-weight:bold;
+}
+
+input[type="button"] {
+  background: #c29800;
+  color: #323904;
+  border: 2px outset #545b26;
+  font-size: 3rem;
+  padding: 0 15px;
+}
+
+input[type="button"]:active {
+  border: 2px inset #545b26;
+}
+
 @media (max-width: 800px){
     h1 {
         font-size: 2rem
