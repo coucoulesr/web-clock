@@ -121,8 +121,7 @@
 	const STOPWATCHELEMENT = document.querySelector("#stopwatch")
 	var stopwatch = [0, 0, 0, 0];
 	var interval;
-	var stopwatchRunning = false;
-
+	
 	// Add leading zero to numbers 9 or below (purely for aesthetics):
 	function leadingZero(time) {
 		if (time <= 9) {
@@ -143,23 +142,16 @@
 
 	// Start the timer:
 	function startStopwatch() {
-		if (!stopwatchRunning) {
-			stopwatchRunning = true;
 			interval = setInterval(() => { runStopwatch(stopwatch, STOPWATCHELEMENT) }, 10);
-		}
 	}
 
 	function stopStopwatch() {
-		if (stopwatchRunning) {
-			stopwatchRunning = false;
 			clearInterval(interval);
-		}
 	}
 
 	// Reset everything:
 	function resetStopwatch() {
 		stopwatch = [0, 0, 0, 0];
-		stopwatchRunning = false;
 		clearInterval(interval);
 		interval = null;
 		STOPWATCHELEMENT.innerHTML = "00:00.00";
