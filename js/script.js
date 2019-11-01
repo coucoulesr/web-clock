@@ -116,16 +116,22 @@
 	}
 // ------------------- End clock logic ------------------- //
 
+
+
+
 // ------------------- Stopwatch logic ------------------- //
 
 	const STOPWATCHELEMENT = document.querySelector("#stopwatch")
 	var stopwatch = [0, 0, 0, 0];
 	var interval;
-	
+
 	// Add leading zero to numbers 9 or below (purely for aesthetics):
 	function leadingZero(time) {
-		if (time <= 9) {
+		if (time <= 9 && String(time).length < 2) {
 			time = "0" + time;
+		}
+		if (time == 0) {
+			time = "00";
 		}
 		return time;
 	}
@@ -160,9 +166,86 @@
 // ----------------- End stopwatch logic ----------------- //
 
 
+
+
+
 // --------------------- Timer logic --------------------- //
 
+	const TIMERHOURS = document.querySelector("#timer-h");
+	const TIMERMINS = document.querySelector("#timer-m");
+	const TIMERSECS = document.querySelector("#timer-s");
+
+	function Timer(hour, min, sec) {
+		this.hour = hour;
+		this.min = min;
+		this.sec = sec;
+		this.interval = null;
+	}
+
+	function runTimer(timerIn) {
+		if (timerIn.sec == 0) {
+			if (timerIn.min == 0) {
+				if (timerIn.hour == 0){
+					stopTimer(timerIn);
+					alert("Time's up!");
+					resetTimer(timerIn);
+					changeVisibility(TIMERSTARTBUTTON, TIMERSTOPBUTTON);
+				}
+				else { // if timer.hour != 0
+					timerIn.hour -= 1;
+					timerIn.min = 59;
+					timerIn.sec = 59;
+				}
+			}
+			else { // if timer.min != 0
+				timerIn.min -= 1;
+				timerIn.sec = 59;
+			}
+		}
+		else { // if timer.sec != 0
+			timerIn.sec -= 1;
+		}
+
+		TIMERHOURS.value = leadingZero(timerIn.hour);
+		TIMERMINS.value = leadingZero(timerIn.min);
+		TIMERSECS.value = leadingZero(timerIn.sec);
+	}
+
+	function startTimer(timerIn) {
+		TIMERHOURS.setAttribute("disabled", "true");
+		TIMERMINS.setAttribute("disabled", "true");
+		TIMERSECS.setAttribute("disabled", "true");
+		return setInterval(() => {runTimer(timerIn)}, 1000);
+	}
+
+	function stopTimer(timerIn) {
+		clearInterval(timerIn.interval);
+	}
+
+	function resetTimer(timerIn) {
+		clearInterval(timerIn.interval);
+		timerIn.inteerval = null;
+		TIMERHOURS.removeAttribute("disabled");
+		TIMERHOURS.value = null;
+		TIMERMINS.removeAttribute("disabled");
+		TIMERMINS.value = null;
+		TIMERSECS.removeAttribute("disabled");
+		TIMERSECS.value = null;
+	}
+
+	function initTimer() {
+		var timer = new Timer(TIMERHOURS.value, TIMERMINS.value, TIMERSECS.value);
+		timer.interval = startTimer(timer);
+		return timer;
+	}
+
+
 // ------------------- End timer logic ------------------- //
+
+
+
+
+
 
 // --------------------- Link logic --------------------- //
 	function changeVisibility(elementToUnhide, elementToHide) {
@@ -193,6 +276,11 @@
 	}
 // ------------------- End link logic ------------------- //
 
+
+
+
+
+
 // --------------------- Main program --------------------- //
 	function runClock() {
 		let time = initTime();
@@ -201,6 +289,7 @@
 	}
 
 	let clock = runClock();
+	let timer;
 
 	const CLOCKLINK = document.querySelector("#clock-link");
 	const STOPWATCHLINK = document.querySelector("#stopwatch-link");
@@ -215,9 +304,14 @@
 	const STOPWATCHRESETBUTTON = document.querySelector("#stopwatch-reset");
 	// const STOPWATCHLAPBUTTON = document.querySelector("#stopwatch-lap");
 
+	const TIMERSTARTBUTTON = document.querySelector("#timer-start");
+	const TIMERSTOPBUTTON = document.querySelector("#timer-stop");
+	const TIMERCANCELBUTTON = document.querySelector("#timer-cancel");
+
 	CLOCKLINK.addEventListener("click", () => {
 		changeVisibility(CLOCKBOX, [STOPWATCHBOX, TIMERBOX]);
 		selectLink(CLOCKLINK, [STOPWATCHLINK, TIMERLINK]);
+		clock = runClock();
 	} );
 
 	STOPWATCHLINK.addEventListener("click", () => {
@@ -248,4 +342,19 @@
 	STOPWATCHRESETBUTTON.addEventListener("click", () => {
 		changeVisibility(STOPWATCHSTARTBUTTON, [STOPWATCHRESUMEBUTTON, STOPWATCHRESETBUTTON]);
 		resetStopwatch();
+	} );
+
+	TIMERSTARTBUTTON.addEventListener("click", () => {
+		changeVisibility(TIMERSTOPBUTTON, TIMERSTARTBUTTON);
+		timer = initTimer();
+	} );
+
+	TIMERSTOPBUTTON.addEventListener("click", () => {
+		changeVisibility(TIMERSTARTBUTTON, TIMERSTOPBUTTON);
+		stopTimer(timer);
+	} );
+
+	TIMERCANCELBUTTON.addEventListener("click", () => {
+		changeVisibility(TIMERSTARTBUTTON, TIMERSTOPBUTTON);
+		resetTimer(timer);
 	} );

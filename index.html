@@ -54,11 +54,12 @@
     <div class="timer-box hidden">
       <!-- <h1 id="timer">00:00:00</h1> -->
       <p>
-        <input type="text" placeholder="h" maxlength="2"></input>:<input type="text" placeholder="m" maxlength="2"></input>:<input type="text" placeholder="s" maxlength="2"></input>
+        <input id="timer-h" type="text" placeholder="h" maxlength="2"></input>:<input id="timer-m" type="text" placeholder="m" maxlength="2"></input>:<input id="timer-s" type="text" placeholder="s" maxlength="2"></input>
       </p>
       <p>
-        <input type="button" value="Start"></input>
-        <input type="button" value="Cancel"></input>
+        <input id="timer-start" type="button" value="Start"></input>
+        <input id="timer-stop" type="button" value="Stop" class="hidden"></input>
+        <input id="timer-cancel" type="button" value="Cancel"></input>
       </p>
     </div>
 </main>
