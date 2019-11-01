@@ -1,8 +1,11 @@
 /*
- * Analog and Digital Clock
+ * Clock App
  * Author: Richard Coucoules
  * Adapted from exercise written by Morten Rand-Hendriksen
- * October 29, 2019
+ * November 1, 2019
+ *
+ * Clock app that mimics functionality of phone apps. Includes digital/analog
+ *   clock, timer, and stopwatch.
  *
  * Notes: The clocks on the rendered page increment manually/programmatically
  *    and are, therefore, prone to desync from the actual time if they run for
