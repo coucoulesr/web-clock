@@ -117,17 +117,79 @@
 // ------------------- End clock logic ------------------- //
 
 // ------------------- Stopwatch logic ------------------- //
+
+	const STOPWATCHELEMENT = document.querySelector("#stopwatch")
+	var stopwatch = [0, 0, 0, 0];
+	var interval;
+	var stopwatchRunning = false;
+
+	// Add leading zero to numbers 9 or below (purely for aesthetics):
+	function leadingZero(time) {
+		if (time <= 9) {
+			time = "0" + time;
+		}
+		return time;
+	}
+
+	// Run a standard minute/second/hundredths timer:
+	function runStopwatch(stopwatchArray, stopwatchElement) {
+		stopwatchArray[3]++;
+		stopwatchArray[0] = Math.floor(stopwatchArray[3] / 6000);
+		stopwatchArray[1] = Math.floor((stopwatchArray[3] / 100) - (stopwatchArray[0] * 60));
+		stopwatchArray[2] = stopwatchArray[3] % 100;
+		let stopwatchReading = leadingZero(stopwatchArray[0]) + ":" + leadingZero(stopwatchArray[1]) + "." + leadingZero(stopwatchArray[2]);
+		stopwatchElement.innerHTML = stopwatchReading;
+	}
+
+	// Start the timer:
+	function startStopwatch() {
+		if (!stopwatchRunning) {
+			stopwatchRunning = true;
+			interval = setInterval(() => { runStopwatch(stopwatch, STOPWATCHELEMENT) }, 10);
+		}
+	}
+
+	function stopStopwatch() {
+		if (stopwatchRunning) {
+			stopwatchRunning = false;
+			clearInterval(interval);
+		}
+	}
+
+	// Reset everything:
+	function resetStopwatch() {
+		stopwatch = [0, 0, 0, 0];
+		stopwatchRunning = false;
+		clearInterval(interval);
+		interval = null;
+		STOPWATCHELEMENT.innerHTML = "00:00.00";
+	}
+
 // ----------------- End stopwatch logic ----------------- //
 
 
-// ------------------- Stopwatch logic ------------------- //
-// ------------------- Stopwatch logic ------------------- //
+// --------------------- Timer logic --------------------- //
+
+// ------------------- End timer logic ------------------- //
 
 // --------------------- Link logic --------------------- //
-	function changeVisibility(elementToUnhide, elementArrayToHide) {
-		elementToUnhide.classList.remove("hidden");
-		for (i = 0; i < elementArrayToHide.length; i++){
-			elementArrayToHide[i].classList.add("hidden");
+	function changeVisibility(elementToUnhide, elementToHide) {
+		if (Array.isArray(elementToUnhide)) {
+			for (i = 0; i < elementToUnhide.length; i++) {
+				elementToUnhide[i].classList.remove("hidden");
+			}
+		}
+		else {
+			elementToUnhide.classList.remove("hidden");
+		}
+
+		if (Array.isArray(elementToHide)) {
+			for (i = 0; i < elementToHide.length; i++) {
+				elementToHide[i].classList.add("hidden");
+			}
+		}
+		else {
+			elementToHide.classList.add("hidden");
 		}
 	}
 
@@ -155,6 +217,12 @@
 	const STOPWATCHBOX = document.querySelector(".stopwatch-box");
 	const TIMERBOX = document.querySelector(".timer-box");
 
+	const STOPWATCHSTARTBUTTON = document.querySelector("#stopwatch-start");
+	const STOPWATCHSTOPBUTTON = document.querySelector("#stopwatch-stop");
+	const STOPWATCHRESUMEBUTTON = document.querySelector("#stopwatch-resume");
+	const STOPWATCHRESETBUTTON = document.querySelector("#stopwatch-reset");
+	// const STOPWATCHLAPBUTTON = document.querySelector("#stopwatch-lap");
+
 	CLOCKLINK.addEventListener("click", () => {
 		changeVisibility(CLOCKBOX, [STOPWATCHBOX, TIMERBOX]);
 		selectLink(CLOCKLINK, [STOPWATCHLINK, TIMERLINK]);
@@ -168,4 +236,24 @@
 	TIMERLINK.addEventListener("click", () => {
 		changeVisibility(TIMERBOX, [CLOCKBOX, STOPWATCHBOX]);
 		selectLink(TIMERLINK, [STOPWATCHLINK, CLOCKLINK]);
+	} );
+
+	STOPWATCHSTARTBUTTON.addEventListener("click", () => {
+		changeVisibility(STOPWATCHSTOPBUTTON, STOPWATCHSTARTBUTTON);
+		startStopwatch();
+	} );
+
+	STOPWATCHSTOPBUTTON.addEventListener("click", () => {
+		changeVisibility([STOPWATCHRESUMEBUTTON, STOPWATCHRESETBUTTON], STOPWATCHSTOPBUTTON);
+		stopStopwatch();
+	} );
+
+	STOPWATCHRESUMEBUTTON.addEventListener("click", () => {
+		changeVisibility(STOPWATCHSTOPBUTTON, [STOPWATCHRESUMEBUTTON, STOPWATCHRESETBUTTON]);
+		startStopwatch();
+	} );
+
+	STOPWATCHRESETBUTTON.addEventListener("click", () => {
+		changeVisibility(STOPWATCHSTARTBUTTON, [STOPWATCHRESUMEBUTTON, STOPWATCHRESETBUTTON]);
+		resetStopwatch();
 	} );

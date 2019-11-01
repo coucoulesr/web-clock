@@ -111,6 +111,7 @@ h1 {
   color: #e4ba11;
   text-align: center;
   font-size: 3rem;
+  padding: 1.5rem;
 }
 
 .timer-box h1, .stopwatch-box h1 {
@@ -138,11 +139,14 @@ input[type="text"] {
 }
 
 input[type="button"] {
+  font-weight: bold;
   background: #c29800;
   color: #323904;
-  border: 2px outset #545b26;
+  border: 4px outset #545b26;
+  /* border: none; */
   font-size: 3rem;
-  padding: 0 15px;
+  padding: 10px 30px;
+  /* border-radius: 50px; */
 }
 
 input[type="button"]:active {
