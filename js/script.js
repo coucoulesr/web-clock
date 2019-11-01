@@ -311,6 +311,7 @@
 	CLOCKLINK.addEventListener("click", () => {
 		changeVisibility(CLOCKBOX, [STOPWATCHBOX, TIMERBOX]);
 		selectLink(CLOCKLINK, [STOPWATCHLINK, TIMERLINK]);
+		clock = null;
 		clock = runClock();
 	} );
 
