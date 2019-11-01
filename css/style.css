@@ -5,6 +5,10 @@
     #805E73
     #6c464f
 */
+html {
+  font-size: 16px;
+}
+
 
 /* Layout */
 body {
@@ -36,8 +40,8 @@ nav a {
 
 .main {
     display: flex;
-    padding: 3em;
-    margin-top: 2em;
+    padding: 3rem;
+    margin-top: 2rem;
     height: 90vh;
     justify-content: center;
     align-items: middle;
@@ -106,7 +110,11 @@ h1 {
   font-family: "Helvetica", sans-serif;
   color: #e4ba11;
   text-align: center;
-  font-size: 3em;
+  font-size: 3rem;
+}
+
+.timer-box h1, .stopwatch-box h1 {
+  font-size: 5rem;
 }
 
 .hidden {
@@ -115,6 +123,6 @@ h1 {
 
 @media (max-width: 800px){
     h1 {
-        font-size: 2em
+        font-size: 2rem
     }
 }
