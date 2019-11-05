@@ -1,20 +1,3 @@
-/*
- * Clock App
- * Author: Richard Coucoules
- * Adapted from exercise written by Morten Rand-Hendriksen
- * November 1, 2019
- *
- * Clock app that mimics functionality of phone apps. Includes digital/analog
- *   clock, timer, and stopwatch.
- *
- * Notes: The clocks on the rendered page increment manually/programmatically
- *    and are, therefore, prone to desync from the actual time if they run for
- *    extended periods. This manual incrementation of the clock primarily
- *    prevents graphical errors in the analog clock and secondarily prevents
- *    desyncing errors between the analog and digital clocks.
-*/
-
-
 // --------------------- Clock logic --------------------- //
 	const HOURHAND = document.querySelector("#hour");
 	const MINUTEHAND = document.querySelector("#minute");
